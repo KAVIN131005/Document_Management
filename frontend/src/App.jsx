@@ -18,6 +18,7 @@ export default function App() {
     updateDarkMode(isDark);
 
     // Fetch initial notifications
+    // eslint-disable-next-line react-hooks/immutability
     fetchNotifications();
 
     // Connect to WebSocket
