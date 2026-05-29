@@ -101,7 +101,6 @@ export default function FileUploadArea({ onUploadSuccess, isBulkUpload, setIsBul
   return (
     <div className="w-full">
       {isBulkUpload && uploading && <BulkUploadBanner fileCount={files.length} />}
-
       {uploading ? (
         <div className="card mb-6">
           <h3 className="text-lg font-semibold mb-4">Uploading {files.length} file{files.length !== 1 ? 's' : ''}</h3>
