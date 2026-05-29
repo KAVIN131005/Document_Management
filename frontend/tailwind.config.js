@@ -16,9 +16,6 @@ export default {
         'teal': '#14b8a6',
         'purple': '#a855f7',
       },
-      fontFamily: {
-        'livvic': ['Livvic', 'sans-serif'],
-      },
     },
   },
   plugins: [],

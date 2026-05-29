@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply font-livvic;
+    font-family: 'Livvic', sans-serif;
   }
 
   body {
@@ -44,7 +44,6 @@
   }
 }
 
-/* Loading spinner animation */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -58,7 +57,6 @@
   animation: spin 1s linear infinite;
 }
 
-/* Progress bar */
 .progress-bar {
   @apply h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden;
 }
@@ -67,12 +65,10 @@
   @apply h-full bg-gradient-to-r from-indigo via-violet to-cyan transition-all duration-300;
 }
 
-/* Gradient text */
 .gradient-text {
   @apply bg-gradient-to-r from-indigo via-violet to-purple bg-clip-text text-transparent;
 }
 
-/* Glow effect */
 .glow {
   @apply shadow-lg shadow-cyan/50 dark:shadow-cyan/30;
 }
