@@ -23,6 +23,16 @@ router.get('/unread/count', async (req, res) => {
   }
 });
 
+// Mark all as read (MUST be before /:id/read to avoid route collision)
+router.patch('/read/all', async (req, res) => {
+  try {
+    await Notification.updateMany({ read: false }, { read: true });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update notifications' });
+  }
+});
+
 // Mark notification as read
 router.patch('/:id/read', async (req, res) => {
   try {
@@ -39,16 +49,6 @@ router.patch('/:id/read', async (req, res) => {
     res.json(notification);
   } catch (err) {
     res.status(500).json({ error: 'Failed to update notification' });
-  }
-});
-
-// Mark all as read
-router.patch('/read/all', async (req, res) => {
-  try {
-    await Notification.updateMany({ read: false }, { read: true });
-    res.json({ success: true });
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to update notifications' });
   }
 });
 

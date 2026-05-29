@@ -8,9 +8,14 @@ export const apiClient = axios.create({
 
 export const uploadFiles = (files, isBulk = false) => {
   const formData = new FormData();
-  files.forEach(file => {
-    formData.append('files', file);
-  });
+
+  if (isBulk) {
+    files.forEach(file => {
+      formData.append('files', file);
+    });
+  } else {
+    formData.append('file', files[0]);
+  }
 
   const endpoint = isBulk ? '/upload/bulk' : '/upload/single';
   return apiClient.post(endpoint, formData, {

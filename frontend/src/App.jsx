@@ -18,15 +18,15 @@ export default function App() {
     updateDarkMode(isDark);
 
     // Fetch initial notifications
-    // eslint-disable-next-line react-hooks/immutability
     fetchNotifications();
 
     // Connect to WebSocket
     connectWebSocket();
 
     return () => {
-      if (ws) ws.close();
+      // Cleanup is handled in websocket onclose
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const connectWebSocket = () => {

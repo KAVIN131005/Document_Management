@@ -75,14 +75,22 @@ export default function FileUploadArea({ onUploadSuccess, isBulkUpload, setIsBul
         setFiles([]);
         setUploading(false);
         setIsBulkUpload(false);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
         if (onUploadSuccess) {
           onUploadSuccess(response.data);
         }
       }, 1000);
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Upload failed: ' + (error.response?.data?.message || error.message));
       setUploading(false);
+      setFiles([]);
+      setIsBulkUpload(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+      alert('Upload failed: ' + (error.response?.data?.message || error.message));
     }
   };
 

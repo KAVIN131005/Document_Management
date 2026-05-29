@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { getUnreadCount, getNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '../api/client';
+import React, { useState, useMemo } from 'react';
+import { markNotificationAsRead, markAllNotificationsAsRead } from '../api/client';
 import NotificationList from './NotificationList';
 
 export default function NotificationBell({ notifications, setNotifications, onNotificationReceived }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
 
-  useEffect(() => {
-    updateUnreadCount();
+  // Calculate unread count from notifications array instead of API call
+  const unreadCount = useMemo(() => {
+    return notifications.filter(n => !n.read).length;
   }, [notifications]);
-
-  const updateUnreadCount = async () => {
-    try {
-      const response = await getUnreadCount();
-      setUnreadCount(response.data.unreadCount);
-    } catch (error) {
-      console.error('Failed to fetch unread count:', error);
-    }
-  };
 
   const handleMarkAsRead = async (id) => {
     try {
